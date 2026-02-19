@@ -1,0 +1,51 @@
+[
+    {
+        "recipient": "recipient",
+        "sender": "sender",
+        "subject": "subject",
+        "body": "body",
+        "id": "477e89f0-9550-47ca-9a1e-16cc178aa487"
+    },
+    {
+        "recipient": "Emily",
+        "sender": "Bob",
+        "subject": "hello",
+        "body": "hello",
+        "id": "e8954fe2-148c-4518-9052-dd4f0f7be13f"
+    },
+    {
+        "recipient": "Emily",
+        "sender": "Bob",
+        "subject": "hello",
+        "body": "hello",
+        "id": "35f18c05-2992-4fe7-a880-e4f721c949fe"
+    },
+    {
+        "recipient": "Emily",
+        "sender": "Faith",
+        "subject": "Howdy",
+        "body": "world",
+        "id": "92366801-631a-478b-8e50-e5e2c37be95e"
+    },
+    {
+        "recipient": "Bob",
+        "sender": "Faith",
+        "subject": "Howdy",
+        "body": "world Fiath",
+        "id": "2bcda7f9-ff88-432c-bbe2-80951ad9930f"
+    },
+    {
+        "recipient": "Bob",
+        "sender": "Emily",
+        "subject": "Herro",
+        "body": "Emilllia",
+        "id": "491aecde-ec31-437d-8314-b0a8041a73a9"
+    },
+    {
+        "recipient": "Bob",
+        "sender": "Demo",
+        "subject": "No Subject",
+        "body": "hi",
+        "id": "a0ccfab1-d186-456e-aaec-06214350beeb"
+    }
+]
