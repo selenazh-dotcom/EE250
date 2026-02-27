@@ -1,3 +1,5 @@
+# Selena Zhang 2575286626
+
 import platform
 import time
 import pandas as pd
@@ -34,11 +36,13 @@ def get_wifi_signal_strength() -> int:
         signal_quality = int(match.group(1))
         signal_strength = -100 + signal_quality / 2
     elif platform.system() == 'Darwin': # Mac
-        output = subprocess.check_output("wdutil info", shell=True, stderr=subprocess.STDOUT)
+        #output = subprocess.check_output("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I",shell=True, stderr=subprocess.STDOUT)
+        output = subprocess.check_output("sudo wdutil info", shell=True, stderr=subprocess.STDOUT)
+        #print(output)
         # The new regex looks for "RSSI" (Received Signal Strength Indicator).
         match = re.search(r"RSSI\s+:\s*(-?\d+)", output.decode('utf-8', errors='ignore'))        
         signal_strength = int(match.group(1))
-        print(signal_strength)
+        #print(signal_strength)
     else:
         raise Exception("Unknown OS")
 
@@ -47,7 +51,7 @@ def get_wifi_signal_strength() -> int:
 def main():
     # Choose at least 5 locations to sample the signal strength at
     # These can be rooms in your house, hallways, different floors, outside, etc. (as long as you can get a WiFi signal)
-    locations = ['bedroom', 'living room', 'kitchen', 'bathroom', 'garage']
+    locations = ['bedroom', 'living room', 'kitchen', 'bathroom', 'closet']
     samples_per_location = 10 # number of samples to take per location
     time_between_samples = 1 # time between samples (in seconds)
 
@@ -59,10 +63,14 @@ def main():
 
         # TODO: collect 10 samples of the signal strength at this location, waiting 1 second between each sample
         # HINT: use the get_wifi_signal_strength function
+        a = get_wifi_signal_strength()
+        # print(a)
+        for i in range(0,10):
+            signal_strengths.append(get_wifi_signal_strength())
         
         # TODO: calculate the mean and standard deviation of the signal strengths you collected at this location
-        signal_strength_mean = None
-        signal_strength_std = None
+        signal_strength_mean = np.mean(signal_strengths)
+        signal_strength_std = np.std(signal_strengths)
 
         # Question 6: What is the standard deviation? Why is it useful to calculate it?
         data.append((location, signal_strength_mean, signal_strength_std))
@@ -80,7 +88,11 @@ def main():
     # NOTE: use the error_y parameter of px.bar to plot the error bars (1 standard deviation)
     #   documentation: https://plotly.com/python-api-reference/generated/plotly.express.bar.html
     fig = px.bar(
-        
+        df,
+        x='location',
+        y='signal_strength_mean',
+        error_y='signal_strength_std',
+        title="Signal Strength by Location"
     )
     # Question 8: Why is it important to plot the error bars? What do they tell us?
 
@@ -89,6 +101,7 @@ def main():
 
     # Question 9: What did you observe from the plot? How does the signal strength change as you move between locations?
     #             Why do you think signal strength is weaker in certain locations?
+
 
 
 if __name__ == "__main__":
