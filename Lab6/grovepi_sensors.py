@@ -1,3 +1,7 @@
+# Lab 6 
+# Selena Zhang 2575286626 selenazh@usc.edu 6262744829
+# Om Tandon 9071094884 otandon@usc.edu 4087120917
+
 import sys
 sys.path.append('~/Dexter/GrovePi/Software/Python')
 import time
